@@ -1,0 +1,10 @@
+node_modules/
+.next/
+dist/
+uploads/
+*.log
+
+backend/.env
+frontend/.env.local
+
+.DS_Store
