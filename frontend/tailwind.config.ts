@@ -8,29 +8,42 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'brand-base': '#F9FAFB',     // gray-50
-        'brand-surface': '#FFFFFF',  // white
-        'brand-border': '#E5E7EB',   // gray-200
-        'accent-primary': '#4F46E5', // indigo-600
-        'accent-amber': '#F59E0B',   // amber-500
-        'text-base': '#111827',      // gray-900
-        'text-muted': '#6B7280',     // gray-500
+        "brand-base": "#0A0A0A", // Deep dark background
+        "brand-surface": "#141414", // Slightly lighter dark
+        "brand-border": "#262626", // Dark gray borders
+        "accent-primary": "#FFFFFF", // White buttons
+        "accent-dark": "#1F1F1F", // Dark buttons
+        "text-base": "#FFFFFF", // White text
+        "text-muted": "#A3A3A3", // Gray text
       },
       fontFamily: {
-        display: ['Space Grotesk', 'sans-serif'],
-        body: ['Inter', 'sans-serif'],
-        mono: ['IBM Plex Mono', 'monospace'],
+        display: ["var(--font-playfair)", "Georgia", "serif"],
+        body: ["var(--font-inter)", "-apple-system", "system-ui", "sans-serif"],
+        mono: ["var(--font-ibm-plex-mono)", "monospace"],
+      },
+      backgroundImage: {
+        'grid-pattern': 'radial-gradient(circle, #333333 1px, transparent 1px)',
       },
       keyframes: {
-        'slide-in': {
-          '0%': { transform: 'translateX(100%)' },
-          '100%': { transform: 'translateX(0)' },
+        "slide-in": {
+          "0%": { transform: "translateX(100%)" },
+          "100%": { transform: "translateX(0)" },
+        },
+        "glow": {
+          "0%, 100%": { opacity: "0.4", transform: "scale(1)" },
+          "50%": { opacity: "0.8", transform: "scale(1.1)" },
+        },
+        "glow-reverse": {
+          "0%, 100%": { opacity: "0.8", transform: "scale(1.1)" },
+          "50%": { opacity: "0.4", transform: "scale(1)" },
         }
       },
       animation: {
-        'slide-in': 'slide-in 0.3s ease-out',
-      }
+        "slide-in": "slide-in 0.3s ease-out",
+        "glow": "glow 6s ease-in-out infinite",
+        "glow-reverse": "glow-reverse 6s ease-in-out infinite",
+      },
     },
   },
   plugins: [],
-}
+};

@@ -4,6 +4,7 @@ import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import { config } from '../config/env';
 import { prisma } from '../services/db';
 import axios from 'axios';
+import nodemailer from 'nodemailer';
 
 const router = Router();
 
@@ -31,6 +32,20 @@ passport.use(
               avatarUrl: profile.photos?.[0].value,
             },
           });
+
+          // Auto-provision an Ethereal sender account for testing
+          try {
+            const testAccount = await nodemailer.createTestAccount();
+            await prisma.senderAccount.create({
+              data: {
+                userId: user.id,
+                email: testAccount.user,
+                pass: testAccount.pass,
+              },
+            });
+          } catch (accountErr) {
+            console.error('Failed to auto-create ethereal account', accountErr);
+          }
         }
         return done(null, user);
       } catch (err) {

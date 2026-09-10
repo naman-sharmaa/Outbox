@@ -34,6 +34,8 @@ model SenderAccount {
 model EmailJob {
   id           String    @id @default(uuid())
   jobId        String    @unique // BullMQ jobId (deterministic)
+  campaignId   String?   // To group initial and follow-up emails
+  stepIndex    Int       @default(0) // 0 = initial, 1 = first follow-up, etc.
   subject      String
   body         String
   recipient    String
